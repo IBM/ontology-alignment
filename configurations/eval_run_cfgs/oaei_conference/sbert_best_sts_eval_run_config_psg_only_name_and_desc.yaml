@@ -1,0 +1,19 @@
+eval_run_config:
+  io:
+    onto_a: datasets/oaei/2021/conference/ontologies/edas.owl
+    onto_b: datasets/oaei/2021/conference/ontologies/iasted.owl
+    ref_alignments: datasets/oaei/2021/conference/alignments/edas-iasted.rdf
+    ontology_parser: OwlReady2OntologyParser  # or RDFLibOntologyParser
+    psg_config: configurations/pseudo_sentence_generator/psg_params_only_name_and_desc.yaml
+    onto_cache_dir: data/onto_caches
+    ps_cache_dir: data/ps_caches
+    results_base_dir: data/eval_results/oaei_conference
+  
+  model:
+    type: sbert_baseline
+    pertrained_name_or_path: all-mpnet-base-v2
+    device: cuda:0
+
+  similarity: cosine # or dot
+  threshold: 0.6 # for evaluation. If the computed similariy between two concepts is less than the threshold, it is considered as NO_MATCH
+

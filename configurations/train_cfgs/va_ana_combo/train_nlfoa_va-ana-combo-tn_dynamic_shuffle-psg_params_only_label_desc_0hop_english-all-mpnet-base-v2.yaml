@@ -1,0 +1,32 @@
+nlfoa_training_config:
+  random_seed: 1312
+  io:
+    train_set: datasets/nlfoa/va_ana_combo/twice_negatives/train.parquet.df
+    test_set: datasets/nlfoa/va_ana_combo/twice_negatives/test.parquet.df
+    val_set: datasets/nlfoa/va_ana_combo/twice_negatives/validate.parquet.df
+    results_dir: data/train_results/nlfoa/va_ana_combo/dynamic_ps
+  model:
+    sts_model: all-mpnet-base-v2
+    add_special_tokens: True
+    pooling_mode: mean
+    device: 'cuda:0'
+  training:
+    train_batch_size: 32
+    test_batch_size: 32
+    val_batch_size: 32
+    shuffle_dataloaders: True
+    dynamic_pseudo_sentences:
+      ontologies_glob: datasets/nlfoa/va_ana_combo/ontologies/*.owl
+      psg_config: configurations/pseudo_sentence_generator/nlfoa/psg_params_only_label_desc_0hop_english.yaml
+      shuffle_ps: True
+    epochs: 20
+    evaluation_steps: 1000
+    checkpoint_save_steps: 1000
+    loss: CosineSimilarityLoss # see sentence_transformers.losses for options
+    warmup_scheduler: WarmupLinear
+    warmup_steps: .1 # fraction of training samples
+    optimizer: AdamW
+    lr: 2e-5
+    weight_decay: 0.01
+    evaluator: EmbeddingSimilarityEvaluator # see sentence_transformers.evaluation for options
+    use_amp: True

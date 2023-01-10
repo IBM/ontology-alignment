@@ -1,0 +1,16 @@
+eval_run_config:
+  io:
+    onto_a: datasets/veealign/web-directory/ontologies/web.owl
+    onto_b: datasets/veealign/web-directory/ontologies/yahoo_small.owl
+    onto_cache_dir: data/onto_caches/veealign_datasets
+    ontology_parser: OwlReady2OntologyParser
+    ps_cache_dir: data/ps_caches/veealign_datasets
+    psg_config: configurations/pseudo_sentence_generator/psg_params_default.yaml
+    ref_alignments: datasets/veealign/web-directory/alignments/web-yahoo_small.rdf
+    results_base_dir: data/eval_results/veealign_datasets/loo/web-directory
+  model:
+    device: cuda:0
+    pertrained_name_or_path: data/train_results/nlfoa/veealign/loo/web-directory/train_nlfoa_loo_web-directory_psg_params_default_all-mpnet-base-v2_2022-07-28_16:01:30.542911/model
+    type: nlfoa
+  similarity: cosine
+  threshold: 0.6

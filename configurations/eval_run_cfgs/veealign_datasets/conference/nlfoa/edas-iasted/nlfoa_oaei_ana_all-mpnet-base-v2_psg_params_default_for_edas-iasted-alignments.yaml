@@ -1,0 +1,16 @@
+eval_run_config:
+  io:
+    onto_a: datasets/veealign/conference/ontologies/edas.owl
+    onto_b: datasets/veealign/conference/ontologies/iasted.owl
+    onto_cache_dir: data/onto_caches/veealign_datasets
+    ontology_parser: OwlReady2OntologyParser
+    ps_cache_dir: data/ps_caches/veealign_datasets
+    psg_config: configurations/pseudo_sentence_generator/nlfoa/psg_params_default.yaml
+    ref_alignments: datasets/veealign/conference/alignments/edas-iasted.rdf
+    results_base_dir: data/eval_results/veealign_datasets/conference/nlfoa
+  model:
+    device: cuda:0
+    pertrained_name_or_path: data/train_results/nlfoa/train_nlfoa_oaei_ana_sts-all-mpnet-base-v2_2022-07-26_12:27:51.327624/model
+    type: nlfoa
+  similarity: cosine
+  threshold: 0.6

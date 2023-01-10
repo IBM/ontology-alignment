@@ -1,0 +1,19 @@
+eval_run_config:
+  io:
+    onto_a: datasets/oaei/2021/anatomy/ontologies/mouse.owl
+    onto_b: datasets/oaei/2021/anatomy/ontologies/human.owl
+    ref_alignments: datasets/oaei/2021/anatomy/alignments/mouse-human.rdf
+    ontology_parser: OwlReady2OntologyParser
+    psg_config: configurations/pseudo_sentence_generator/psg_params_default.yaml
+    onto_cache_dir: data/onto_caches
+    ps_cache_dir: data/ps_caches
+    results_base_dir: data/eval_results/oaei_anatomy/nlfoa/dynamic_ps
+    
+
+  model:
+    type: nlfoa
+    pertrained_name_or_path: data/train_results/nlfoa/dynamic_ps/train_nlfoa_va-combo-tn_no_special_tokens_dynamic-ps_psg_default_sts-all-mpnet-base-v2_2022-07-29_16:29:07.319600/model
+    device: cuda:0
+
+  similarity: cosine # or dot
+  threshold: 0.6 # for evaluation. If the computed similariy between two concepts is less than the threshold, it is considered as NO_MATCH

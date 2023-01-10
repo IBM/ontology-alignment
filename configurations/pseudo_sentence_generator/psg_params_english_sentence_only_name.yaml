@@ -1,0 +1,133 @@
+pseudo_sentence_generator:
+  concepts:
+    name:
+      include: True
+      camel_case_split: True
+      snake_case_split: True
+      to_lower: False
+    
+    comments:
+      include: False
+    
+    labels:
+      include: False
+    
+    parents:
+      include_name: False
+      include_props: False
+      max_level: 0
+    
+    children:
+      include_name: False
+      include_props: False
+      max_level: 0
+    
+    props:
+      incoming:
+        include_name: False
+        include_domain: False
+        include_range: False
+      
+      outgoing:
+        include_name: False
+        include_domain: False
+        include_range: False
+    
+    ordering:
+      - name
+      - labels
+      - comments
+      - parents
+      - children
+      - props:
+        - incoming
+        - outgoing
+    
+  properties:
+    name:
+      include: True
+      camel_case_split: True
+      snake_case_split: True
+      to_lower: False
+    
+    comments:
+      include: True
+    
+    labels:
+      include: True
+    
+    domain:
+      include_name: False
+      include_parents: False
+      include_children: False
+    
+    range:
+      include_name: False
+      include_parents: False
+      include_children: False
+    
+    children:
+      include_name: False
+      include_domain: False
+      include_range: False
+      max_level: 0
+    
+    parents:
+      include_name: False
+      include_domain: False
+      include_range: False
+      max_level: 0
+    
+    inverse:
+      include_name: False
+      include_domain: False
+      include_range: False
+    
+    ordering:
+      - name
+      - labels
+      - comments
+      - domain
+      - range
+      - inverse
+      - parents
+      - children
+    
+  special_characters:
+    # concept and property related
+    list_separator: ","
+    name_start: " '"
+    name_end: "' "
+    labels_start: "It has the following labels:"
+    labels_end: "."
+    comments_start: "It has the following comments:"
+    comments_end: "."
+    no_parents: "No parents"
+    no_children: "No children"
+    properties_domain_start: "The domain of this property is:"
+    properties_domain_end: "."
+    properties_range_start: "The range of this property is:"
+    properties_range_end: "."
+    
+    # only concept related
+    target_concept_start: "The target concept is:"
+    target_concept_end: "."
+    parent_concepts_start: "It has the following parent concepts:"
+    parent_concepts_end: "."
+    child_concepts_start: "It has the following child concepts:"
+    child_concepts_end: "."
+    incoming_properties_start: "It has the following incoming properties:"
+    incoming_properties_end: "."
+    outgoing_properties_start:  "It has the following outgoing properties:"
+    outgoing_properties_end: "."
+    
+    # only property related
+    target_property_start: "The target property is:"
+    target_property_end: "."
+    parent_properties_start: "It has the following parent properties:"
+    parent_properties_end: "."
+    child_properties_start: "It has the following child properties:"
+    child_properties_end: "."
+    inverse_properties_start: "The inverse of this property is:"
+    inverse_properties_end: "."
+    no_inverse: "No inverse"

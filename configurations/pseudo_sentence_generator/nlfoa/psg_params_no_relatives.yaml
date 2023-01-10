@@ -1,0 +1,133 @@
+pseudo_sentence_generator:
+  concepts:
+    name:
+      include: True
+      camel_case_split: True
+      snake_case_split: True
+      to_lower: False
+    
+    comments:
+      include: True
+    
+    labels:
+      include: True
+    
+    parents:
+      include_name: False
+      include_props: False
+      max_level: 0
+    
+    children:
+      include_name: False
+      include_props: False
+      max_level: 0
+    
+    props:
+      incoming:
+        include_name: True
+        include_domain: True
+        include_range: False
+      
+      outgoing:
+        include_name: True
+        include_domain: False
+        include_range: True
+    
+    ordering:
+      - name
+      - labels
+      - comments
+      - parents
+      - children
+      - props:
+        - incoming
+        - outgoing
+    
+  properties:
+    name:
+      include: True
+      camel_case_split: True
+      snake_case_split: True
+      to_lower: False
+    
+    comments:
+      include: True
+    
+    labels:
+      include: True
+    
+    domain:
+      include_name: True
+      include_parents: False
+      include_children: False
+    
+    range:
+      include_name: True
+      include_parents: False
+      include_children: False
+    
+    children:
+      include_name: False
+      include_domain: False
+      include_range: False
+      max_level: 0
+    
+    parents:
+      include_name: False
+      include_domain: False
+      include_range: False
+      max_level: 0
+    
+    inverse:
+      include_name: True
+      include_domain: False
+      include_range: False
+    
+    ordering:
+      - name
+      - labels
+      - comments
+      - domain
+      - range
+      - inverse
+      - parents
+      - children
+  
+  special_characters:
+    # concept and property related
+    list_separator: "[|]"
+    name_start: "[NME]"
+    name_end: ""
+    labels_start: "[LBL]"
+    labels_end: ""
+    comments_start: "[CMT]"
+    comments_end: ""
+    no_parents: "[NOP]"
+    no_children: "[NOC]"
+    properties_domain_start: "[PD]"
+    properties_domain_end: ""
+    properties_range_start: "[PR]"
+    properties_range_end: ""
+    
+    # only concept related
+    target_concept_start: "[TC]"
+    target_concept_end: ""
+    parent_concepts_start: "[PC]"
+    parent_concepts_end: ""
+    child_concepts_start: "[CC]"
+    child_concepts_end: ""
+    incoming_properties_start: "[IP]"
+    incoming_properties_end: ""
+    outgoing_properties_start: "[OP]"
+    outgoing_properties_end: ""
+    
+    # only property related
+    target_property_start: "[TPR]"
+    target_property_end: ""
+    parent_properties_start: "[PPR]"
+    parent_properties_end: ""
+    child_properties_start: "[CPR]"
+    child_properties_end: ""
+    inverse_properties_start: "[IPR]"
+    inverse_properties_end: ""
+    no_inverse: "[NOI]"
