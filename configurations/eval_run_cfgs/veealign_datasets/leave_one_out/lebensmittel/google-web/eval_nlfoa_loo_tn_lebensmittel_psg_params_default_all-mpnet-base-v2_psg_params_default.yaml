@@ -1,0 +1,16 @@
+eval_run_config:
+  io:
+    onto_a: datasets/veealign/lebensmittel/ontologies/Google.Lebensmittel.v2.owl
+    onto_b: datasets/veealign/lebensmittel/ontologies/web.Lebensmittel.v2.owl
+    onto_cache_dir: data/onto_caches/veealign_datasets
+    ontology_parser: OwlReady2OntologyParser
+    ps_cache_dir: data/ps_caches/veealign_datasets
+    psg_config: configurations/pseudo_sentence_generator/psg_params_default.yaml
+    ref_alignments: datasets/veealign/lebensmittel/alignments/Google.Lebensmittel.v2-web.Lebensmittel.v2.rdf
+    results_base_dir: data/eval_results/veealign_datasets/loo/lebensmittel
+  model:
+    device: cuda:0
+    pertrained_name_or_path: data/train_results/nlfoa/veealign/loo/lebensmittel/train_nlfoa_loo_tn_lebensmittel_psg_params_default_all-mpnet-base-v2_2022-07-28_16:03:19.023354/model
+    type: nlfoa
+  similarity: cosine
+  threshold: 0.6

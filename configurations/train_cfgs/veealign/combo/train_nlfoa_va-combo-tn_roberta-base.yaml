@@ -1,0 +1,29 @@
+nlfoa_training_config:
+  random_seed: 1312
+  io:
+    train_set: datasets/nlfoa/veealign/combo/twice_negatives/train.parquet.df
+    test_set: datasets/nlfoa/veealign/combo/twice_negatives/test.parquet.df
+    val_set: datasets/nlfoa/veealign/combo/twice_negatives/validate.parquet.df
+    results_dir: data/train_results/nlfoa
+  model:
+    word_embedding_model: roberta-base
+    max_seq_length: 512
+    add_special_tokens: True
+    pooling_mode: mean
+    device: 'cuda:0'
+  training:
+    train_batch_size: 8
+    test_batch_size: 16
+    val_batch_size: 16
+    shuffle_dataloaders: True
+    epochs: 10
+    evaluation_steps: 500
+    checkpoint_save_steps: 250
+    loss: CosineSimilarityLoss # see sentence_transformers.losses for options
+    warmup_scheduler: WarmupLinear
+    warmup_steps: .1 # fraction of training samples
+    optimizer: AdamW
+    lr: 2e-5
+    weight_decay: 0.01
+    evaluator: EmbeddingSimilarityEvaluator # see sentence_transformers.evaluation for options
+    use_amp: True

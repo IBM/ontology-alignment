@@ -1,0 +1,32 @@
+nlfoa_training_config:
+  random_seed: 1312
+  io:
+    train_set: datasets/nlfoa/veealign/leave_one_out_freizeit_psg_params_default/twice_negatives/train.parquet.df
+    test_set: datasets/nlfoa/veealign/leave_one_out_freizeit_psg_params_default/twice_negatives/test.parquet.df
+    val_set: datasets/nlfoa/veealign/leave_one_out_freizeit_psg_params_default/twice_negatives/validate.parquet.df
+    results_dir: data/train_results/nlfoa/veealign/loo/dynamic_ps/freizeit
+  model:
+    sts_model: all-mpnet-base-v2
+    add_special_tokens: true
+    pooling_mode: mean
+    device: cuda:0
+  training:
+    train_batch_size: 32
+    test_batch_size: 32
+    val_batch_size: 32
+    shuffle_dataloaders: true
+    dynamic_pseudo_sentences:
+      ontologies_glob: datasets/veealign/**/**/*.owl
+      psg_config: configurations/pseudo_sentence_generator/nlfoa/psg_params_name_desc_2hop_props_no_domain_and_range_english.yaml
+      shuffle_ps: false
+    epochs: 20
+    evaluation_steps: 1000
+    checkpoint_save_steps: 1000
+    loss: CosineSimilarityLoss
+    warmup_scheduler: WarmupLinear
+    warmup_steps: 0.1
+    optimizer: AdamW
+    lr: 2.0e-05
+    weight_decay: 0.01
+    evaluator: EmbeddingSimilarityEvaluator
+    use_amp: true

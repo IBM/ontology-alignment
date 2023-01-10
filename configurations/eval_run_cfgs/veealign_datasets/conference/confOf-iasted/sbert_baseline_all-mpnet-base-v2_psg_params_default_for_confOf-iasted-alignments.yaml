@@ -1,0 +1,16 @@
+eval_run_config:
+  io:
+    onto_a: datasets/veealign/conference/ontologies/confOf.owl
+    onto_b: datasets/veealign/conference/ontologies/iasted.owl
+    onto_cache_dir: data/onto_caches/veealign_datasets
+    ontology_parser: OwlReady2OntologyParser
+    ps_cache_dir: data/ps_caches/veealign_datasets
+    psg_config: configurations/pseudo_sentence_generator/psg_params_default.yaml
+    ref_alignments: datasets/veealign/conference/alignments/confOf-iasted.rdf
+    results_base_dir: data/eval_results/veealign_datasets/conference
+  model:
+    device: cuda:1
+    pertrained_name_or_path: all-mpnet-base-v2
+    type: sbert_baseline
+  similarity: cosine
+  threshold: 0.6

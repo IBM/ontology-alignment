@@ -1,0 +1,16 @@
+eval_run_config:
+  io:
+    onto_a: datasets/veealign/conference/ontologies/iasted.owl
+    onto_b: datasets/veealign/conference/ontologies/sigkdd.owl
+    onto_cache_dir: data/onto_caches/veealign_datasets
+    ontology_parser: OwlReady2OntologyParser
+    ps_cache_dir: data/ps_caches/veealign_datasets
+    psg_config: configurations/pseudo_sentence_generator/nlfoa/psg_params_name_desc_0hop_props_no_domain_and_range_english.yaml
+    ref_alignments: datasets/veealign/conference/alignments/iasted-sigkdd.rdf
+    results_base_dir: data/eval_results/veealign_datasets/loo/dynamic_ps/conference
+  model:
+    device: cuda:0
+    pertrained_name_or_path: data/train_results/nlfoa/veealign/loo/dynamic_ps/conference/train_nlfoa_loo_conference_tn_dynamic-psg_params_name_desc_0hop_props_no_domain_and_range_english_all-mpnet-base-v2_2022-08-04_19:41:01.372778/model
+    type: nlfoa
+  similarity: cosine
+  threshold: 0.6

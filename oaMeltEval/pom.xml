@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.ibm.oa</groupId>
+    <artifactId>NLFOAWebMatcher</artifactId><!-- id used as the docker image name -->
+    <packaging>jar</packaging>
+    <version>1.0</version><!-- version appearing in the docker image name -->
+    <description>Demo matcher with melt packaging</description>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        
+        <oaei.mainClass>com.ibm.oa.NLFOAWebMatcher</oaei.mainClass><!-- mandatory: this class has to implement IOntologyMatchingToolBridge -->
+        
+        <maven.deploy.skip>true</maven.deploy.skip><!-- needed to call mvn deploy without having a distributionManagement -->
+        <matching.version>3.0</matching.version> <!-- version for all matching related packages -->
+    </properties>
+    
+    <!-- Accessing the resources:
+    - all files in "oaei-resources" folder are stored in the current working directory and can be accessed with 
+          Files.readAllLines(Paths.get("oaei-resources", "configuration_oaei.txt"));
+    - all files in "src/main/resources" folder are compiled to the resulting jar and can be accessed with
+          getClass().getClassLoader().getResourceAsStream("configuration_jar.txt");
+    -->
+    
+    <dependencies>
+        <!-- dependency for jena matchers - for other matchers you can replace it with artifactId: matching-base -->
+        <dependency>
+            <groupId>de.uni-mannheim.informatik.dws.melt</groupId>
+            <artifactId>matching-jena</artifactId>
+            <version>${matching.version}</version>
+        </dependency>
+
+        <!-- This dependency is necessary for web submission. It contains the server wrapper. -->
+        <dependency>
+            <groupId>de.uni-mannheim.informatik.dws.melt</groupId>
+            <artifactId>receiver-http</artifactId>
+            <version>${matching.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.uni-mannheim.informatik.dws.melt</groupId>
+            <artifactId>matching-eval</artifactId>
+            <version>${matching.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.uni-mannheim.informatik.dws.melt</groupId>
+            <artifactId>matching-base</artifactId>
+            <version>${matching.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/net.sf.py4j/py4j -->
+        <dependency>
+            <groupId>net.sf.py4j</groupId>
+            <artifactId>py4j</artifactId>
+            <version>0.10.9.1</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

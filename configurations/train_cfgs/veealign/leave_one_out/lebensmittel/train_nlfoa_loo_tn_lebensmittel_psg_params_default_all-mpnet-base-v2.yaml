@@ -1,0 +1,28 @@
+nlfoa_training_config:
+  random_seed: 1312
+  io:
+    train_set: datasets/nlfoa/veealign/leave_one_out_lebensmittel_psg_params_default/twice_negatives/train.parquet.df
+    test_set: datasets/nlfoa/veealign/leave_one_out_lebensmittel_psg_params_default/twice_negatives/test.parquet.df
+    val_set: datasets/nlfoa/veealign/leave_one_out_lebensmittel_psg_params_default/twice_negatives/validate.parquet.df
+    results_dir: data/train_results/nlfoa/veealign/loo/lebensmittel
+  model:
+    sts_model: all-mpnet-base-v2
+    add_special_tokens: True
+    pooling_mode: mean
+    device: 'cuda:0'
+  training:
+    train_batch_size: 16
+    test_batch_size: 32
+    val_batch_size: 32
+    shuffle_dataloaders: True
+    epochs: 10
+    evaluation_steps: 500
+    checkpoint_save_steps: 1000
+    loss: CosineSimilarityLoss # see sentence_transformers.losses for options
+    warmup_scheduler: WarmupLinear
+    warmup_steps: .1 # fraction of training samples
+    optimizer: AdamW
+    lr: 2e-5
+    weight_decay: 0.01
+    evaluator: EmbeddingSimilarityEvaluator # see sentence_transformers.evaluation for options
+    use_amp: True

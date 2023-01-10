@@ -1,0 +1,16 @@
+eval_run_config:
+  io:
+    onto_a: datasets/oaei/2021/anatomy/ontologies/mouse.owl
+    onto_b: datasets/oaei/2021/anatomy/ontologies/human.owl
+    ref_alignments: datasets/oaei/2021/anatomy/alignments/mouse-human.rdf
+    onto_cache_dir: data/onto_caches/veealign_datasets
+    ontology_parser: OwlReady2OntologyParser
+    ps_cache_dir: data/ps_caches/veealign_datasets
+    psg_config: configurations/pseudo_sentence_generator/nlfoa/psg_params_name_desc_2hop_props_no_domain_and_range_english.yaml
+    results_base_dir: data/eval_results/oaei_conf_on_oaei_ana
+  model:
+    device: cuda:1
+    pertrained_name_or_path: data/train_results/nlfoa/oaei_2021/conference/dynamic_ps/train_nlfoa_oaei_conference_80_20_tn_dynamic_ps-psg_params_name_desc_2hop_props_no_domain_and_range_english_all-mpnet-base-v2_2022-08-08_15:11:37.059313/model
+    type: nlfoa
+  similarity: cosine
+  threshold: 0.1594008207321167
